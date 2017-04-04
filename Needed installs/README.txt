@@ -1,6 +1,6 @@
 Needed installs for *Name WIP* Python/sql db/webserver project currently. (03.04.2017 - Helgi St)
 
-:- Python versiob 3.4.x
+:- Python version 3.4.x
 :- Mysql connector 2.1.5 for python 3.4
 AKA all the installers in this folder.
 
