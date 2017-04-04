@@ -2,8 +2,8 @@
 import mysql.connector
 # --------------------------------------------------------- #
 
+__copyright__ = "WTFPL - http://www.wtfpl.net/about/"
 __credit__ = ["Helgi"]
-
 
 def test_if_number(text, float_or_int):
     # Function that tests if the value entered is a number or not.
