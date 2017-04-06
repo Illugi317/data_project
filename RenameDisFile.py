@@ -1,9 +1,13 @@
 # ------------------------Imports-------------------------- #
 import mysql.connector
+from time import sleep
+import os
+
 # --------------------------------------------------------- #
 
 __copyright__ = "WTFPL - http://www.wtfpl.net/about/"
 __credit__ = ["Helgi"]
+
 
 def test_if_number(text, float_or_int):
     # Function that tests if the value entered is a number or not.
@@ -36,10 +40,9 @@ def run_again():
 
 
 class ConnectAndCommit:
-
-    def __init__(self, query, data):
+    def __init__(self, query):
         self.query = query
-        self.data = data
+        # self.data = data
         self.connection = None  # The reason for this is to get rid of an annoying PEP8 warning
         self.cursor = None  # The reason for this is to get rid of an annoying PEP8 warning
 
@@ -53,7 +56,7 @@ class ConnectAndCommit:
 
     def execute_n_commit(self):
         self.cursor = self.connection.cursor()
-        self.cursor.execute(self.query, self.data)
+        self.cursor.execute(self.query, """ self.data""")
 
         self.connection.commit()
 
@@ -63,13 +66,60 @@ class ConnectAndCommit:
 
 
 class Data:
-
     def __init__(self):
         pass
 
-    def get_data(self):
+    def get_text_data(self):
+        Inpdata = input("Type here: ")
+        query = ("INSERT INTO test"
+                 "(name, secname) "
+                 "VALUES ('" + Inpdata + "', 'johnson')")
+        cac = ConnectAndCommit(query)
+        cac.est_connection()
+        cac.execute_n_commit()
+        cac.close_connection()
+
+
+
+class Choices:
+    def __init__(self):
         pass
 
+    def choice_add_data(self):
+        print("Kind of data\n[1]Text i enter")
+        choice = test_if_number(">: ", int)
+        if choice == 1:
+            data = Data()
+            data.get_text_data()
+
+
+def main():
+
+    """os.system("start data_logo.cmd")
+    print("Starting up", end="", flush=True)
+    for i in range(4):
+        print(".", end="", flush=True)
+        sleep(1)"""
+
+    print("\n " + "_" * 29, "\n| What do you want to do?     |\n|[1]Display all my data       |")
+    print("|[2]Add data")
+    main_choice = test_if_number(">: ", int)
+    choice = Choices()
+    if main_choice == 2:
+        choice.choice_add_data()
+
+
+
+
+if __name__ == '__main__':
+    main()
+
+
+# ---DUMP-MIGHT-BE-USED-LATER--- #
+
+"""
+
+-[OPEN LOGO - start]- (Used before data_logo.cmd)
 
 def open_logo():
     line_list = []
@@ -80,17 +130,17 @@ def open_logo():
         return line_list
 
 
-def main():
-    line_list = open_logo()
-    longest_line = 0
-    length = 0
-    for i in range(len(line_list)):
-        if len(line_list[i]) > longest_line:
-            longest_line = len(line_list[i])
-        length = longest_line + 4
-    print(" " + "".rjust(length + 3, "_"))
-    for i in range(len(line_list)):
-        print("|", line_list[i], " ".rjust(length - len(line_list[i])), "|")
+line_list = open_logo()
+longest_line = 0
+length = 0
+for i in range(len(line_list)):
+    if len(line_list[i]) > longest_line:
+        longest_line = len(line_list[i])
+    length = longest_line + 4
+print(" " + "".rjust(length + 3, "_"))
+for i in range(len(line_list)):
+    print("|", line_list[i], " ".rjust(length - len(line_list[i])), "|")
+print("|" + "".rjust(length + 3, "_") + "|")
 
-if __name__ == '__main__':
-    main()
+-[OPEN LOGO - End]-
+"""
