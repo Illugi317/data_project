@@ -6,5 +6,6 @@ AKA all the installers in this folder.
 
 Python 3.4 HAS to be installed BEFORE Mysql connector !!!
 
-If you are using Pycharm to edit remember to change the interpreter to python 3.4, 
+If you are using Pycharm to edit remember to change the interpreter to python 3.4 (File>settings>Project>Project Interpreter>Python3.4)
 The project (.idea) should be set configured to select it automatically but it doesn't hurt to check it just in case.
+
